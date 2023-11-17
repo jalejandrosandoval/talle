@@ -5,7 +5,17 @@ import 'package:flutter/material.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  const FirebaseOptions firebaseConfig  = FirebaseOptions(
+    apiKey: "AIzaSyCsMjYKPPq4t03jKgDxEnnwGIiZGcU6BQA",
+    authDomain: "myfailapp-6e9ce.firebaseapp.com",
+    databaseURL: "https://myfailapp-6e9ce-default-rtdb.firebaseio.com",
+    projectId: "myfailapp-6e9ce",
+    storageBucket: "myfailapp-6e9ce.appspot.com",
+    messagingSenderId: "917758134506",
+    appId: "1:917758134506:web:39ce7681e8804bc3c82f93"
+);
+
+  await Firebase.initializeApp(options: firebaseConfig );
   runApp(MyApp());
 }
 
@@ -43,29 +53,29 @@ class _AuthScreenState extends State<AuthScreen> { // Define el estado de AuthSc
   String? registeredPassword2; // Almacena la contraseña registrada.
   String? tipoUsuario;
 
-   Readinfo() async {
-    try {
-          DatabaseReference dbRef2 = FirebaseDatabase.instance.ref().child('usuario');
-          final snapshot = await dbRef2.get();
-          Map usuarios = snapshot as Map;
-          print(snapshot);
-          print(usuarios);
-          if (snapshot.exists) {
-              print(snapshot.value);
-              // print(usuarios['nombre']);
-              // print(usuarios['clave']);
-              // print(usuarios['tipo']);
-              //registeredEmail = usuarios['nombre'];
-              //registeredPassword = usuarios['clave'];
-              //tipoUsuario = usuarios['tipo'];
-              // tipoUsuario = 'cuidador';
-          } else {
-              print('No data available.');
-          }
-    } on Exception catch (e) {
-      print(e);
-    }
-  }
+  //  Readinfo() async {
+  //   try {
+  //         DatabaseReference dbRef2 = FirebaseDatabase.instance.ref().child('usuario');
+  //         final snapshot = await dbRef2.get();
+  //         Map usuarios = snapshot as Map;
+  //         print(snapshot);
+  //         print(usuarios);
+  //         if (snapshot.exists) {
+  //             print(snapshot.value);
+  //             // print(usuarios['nombre']);
+  //             // print(usuarios['clave']);
+  //             // print(usuarios['tipo']);
+  //             //registeredEmail = usuarios['nombre'];
+  //             //registeredPassword = usuarios['clave'];
+  //             //tipoUsuario = usuarios['tipo'];
+  //             // tipoUsuario = 'cuidador';
+  //         } else {
+  //             print('No data available.');
+  //         }
+  //   } on Exception catch (e) {
+  //     print(e);
+  //   }
+  // }
 
   void login() { // Función para iniciar sesión.
       //Readinfo();
@@ -165,8 +175,6 @@ class _AuthScreenState extends State<AuthScreen> { // Define el estado de AuthSc
       );
   }
 }
-
-
 
 /* class MyApp extends StatelessWidget {
   const MyApp({super.key});
